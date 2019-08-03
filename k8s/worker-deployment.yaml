@@ -20,8 +20,8 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 1
-            memory: 1Gi
+            cpu: 100m
+            memory: 128mi
         env:
           - name: REDIS_HOST
             value: redis-cluster-ip-service
