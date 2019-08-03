@@ -10,6 +10,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+pgData.createSchema();
+
 app.get('/', (req, res) => {
   res.send('Hi');
 });
