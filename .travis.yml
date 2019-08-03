@@ -5,10 +5,14 @@ services:
 cache:
   directories:
     - "$HOME/google-cloud-sdk/"
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
   - gcloud version || true
-  - echo "Installing google-cloud-sdk" && if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash 2>/dev/null >/dev/null; fi
+  - echo "Installing google-cloud-sdk" && if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash 2>/dev/null >/dev/null; fi
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
@@ -23,3 +27,8 @@ before_install:
 script:
   - docker run -e CI=true sanjaypsachdev/react-test yarn test
 
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
