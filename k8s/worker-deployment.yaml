@@ -13,17 +13,17 @@ spec:
         component: worker
     spec:
       containers:
-      - name: worker
-        image: sanjaypsachdev/multi-worker:latest
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 100m
-            memory: 128mi
-        env:
-          - name: REDIS_HOST
-            value: redis-cluster-ip-service
-          - name: REDIS_PORT
-            value: "6379"
+        - name: worker
+          image: sanjaypsachdev/multi-worker:latest
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: "6379"

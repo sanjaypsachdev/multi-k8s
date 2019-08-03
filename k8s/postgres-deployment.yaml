@@ -20,12 +20,12 @@ spec:
         - name: postgres
           image: postgres
           resources:
-          requests:
-            cpu: 200m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128mi
+            requests:
+              cpu: 200m
+              memory: 512Mi
+            limits:
+              cpu: 200m
+              memory: 1Gi
           ports:
           - containerPort: 5432
           volumeMounts:
