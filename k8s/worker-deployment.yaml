@@ -16,9 +16,12 @@ spec:
       - name: worker
         image: sanjaypsachdev/multi-worker:latest
         resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
           limits:
-            memory: "64Mi"
-            cpu: "100m"
+            cpu: 1
+            memory: 1Gi
         env:
           - name: REDIS_HOST
             value: redis-cluster-ip-service
