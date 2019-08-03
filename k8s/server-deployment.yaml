@@ -16,9 +16,12 @@ spec:
       - name: server
         image: sanjaypsachdev/multi-server:latest
         resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
           limits:
-            memory: "64Mi"
-            cpu: "100m"
+            cpu: 1
+            memory: 1Gi
         ports:
         - containerPort: 5000
         env:
