@@ -10,8 +10,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-pgData.createSchema();
-
 app.get('/', (req, res) => {
   res.send('Hi');
 });
@@ -34,6 +32,10 @@ app.post('/values', async (req, res) => {
   }
   await Promise.all([redisData.insertIndexForValue(index), pgData.insertValue(index)]);
   res.send({ working: true });
+});
+
+app.get('/createschema', async (req, res) => {
+  pgData.createSchema();
 });
 
 app.listen(5000, err => {
