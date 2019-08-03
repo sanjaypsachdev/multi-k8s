@@ -35,7 +35,8 @@ app.post('/values', async (req, res) => {
 });
 
 app.get('/createschema', async (req, res) => {
-  pgData.createSchema();
+  await pgData.createSchema();
+  res.sendStatus(200);
 });
 
 app.listen(5000, err => {
